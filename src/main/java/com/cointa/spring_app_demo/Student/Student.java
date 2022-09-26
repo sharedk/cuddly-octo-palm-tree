@@ -29,9 +29,19 @@ public class Student {
     )
     private Long id;
     private String name;
+    @Column(columnDefinition = "varchar(255) default ''")
+    private String surname;
     @Transient
     private Integer age;
     private LocalDate dob;
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
     private String email;
 
     public Student() {
