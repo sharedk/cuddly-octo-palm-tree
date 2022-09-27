@@ -4,6 +4,8 @@
  */
 package com.cointa.spring_app_demo.Student;
 
+import com.cointa.spring_app_demo.School.SchoolRepository;
+import com.cointa.spring_app_demo.School.School;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
@@ -22,10 +24,12 @@ import org.springframework.transaction.annotation.Transactional;
 public class StudentService {
     
     private StudentRepository studentRepository;
+    private SchoolRepository schoolRepository;
     
     @Autowired
-    public StudentService(StudentRepository studentRepository) {
+    public StudentService(StudentRepository studentRepository, SchoolRepository SchoolRepository) {
         this.studentRepository = studentRepository;
+        this.schoolRepository = SchoolRepository;
     }
     
     public List<Student> getStudents(){
@@ -54,7 +58,17 @@ public class StudentService {
             if(studentOptional.isPresent()) throw new IllegalAccessException("email taken");
             student.setEmail(email);
         }
-       
+    }
+    
+    @Transactional
+    public void addToSchool(Long studentId,Long schoolId) throws IllegalAccessException{
+       School school= schoolRepository.findById(schoolId).orElseThrow(()-> new IllegalAccessException("school with id "+schoolId+" not found"));
+       Student student= studentRepository.findById(studentId).orElseThrow(()->new IllegalAccessException("student with id "+studentId+" not found"));
+       student.setSchool(school);
+    }
+
+    public List<String> getNames() {
+        return studentRepository.findNames();
     }
     
 }

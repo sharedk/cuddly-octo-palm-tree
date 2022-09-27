@@ -4,9 +4,11 @@
  */
 package com.cointa.spring_app_demo.Student;
 
+import com.cointa.spring_app_demo.School.School;
 import java.time.LocalDate;
 import java.time.Period;
 import javax.persistence.*;
+import org.hibernate.annotations.Cascade;
 
 /**
  *
@@ -34,6 +36,10 @@ public class Student {
     @Transient
     private Integer age;
     private LocalDate dob;
+    
+    @ManyToOne
+    @JoinColumn(name = "school_id")
+    private School school;
 
     public void setSurname(String surname) {
         this.surname = surname;
@@ -47,18 +53,29 @@ public class Student {
     public Student() {
     }
 
-    public Student(Long id, String name,  LocalDate dob, String email) {
+    public Student(Long id, String name,  LocalDate dob, String email,School school) {
         this.id = id;
         this.name = name;
         this.dob = dob;
         this.email = email;
+        this.school= school;
     }
 
-    public Student(String name, LocalDate dob, String email) {
+    public Student(String name, LocalDate dob, String email,School school) {
         this.name = name;
         this.dob = dob;
         this.email = email;
+        this.school= school;
     }
+
+    public Student(Long id, String name, String surname, Integer age, LocalDate dob, String email) {
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
+        this.dob = dob;
+        this.email = email;
+    }
+    
 
     public Long getId() {
         return id;
@@ -104,5 +121,16 @@ public class Student {
     public String toString() {
         return "Student{" + "id=" + id + ", name=" + name + ", age=" + age + ", dob=" + dob + ", email=" + email + '}';
     }
+
+    public void setSchool(School school) {
+        this.school = school;
+    }
+
+    public Long getSchool_id() {
+        if(this.school!=null) return this.school.getId();
+        else return null;
+        
+    }
+    
     
 }

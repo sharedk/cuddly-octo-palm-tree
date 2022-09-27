@@ -35,6 +35,11 @@ public class StudentController {
         return studentService.getStudents();
     }
     
+    @GetMapping(path="names")
+    public List<String> getNames(){
+        return studentService.getNames();
+    }
+    
     @PostMapping
     public void addNewStudent(@RequestBody Student student) throws IllegalAccessException {
         studentService.addStudent(student);
@@ -51,5 +56,8 @@ public class StudentController {
             @RequestParam(required=false) String email) throws IllegalAccessException{
         studentService.updateStudent(studentId,name,email);
 }
-    
+    @PutMapping(path = "{studentId}/schools/{schoolId}")
+    public void addStudentToSchool(@PathVariable("studentId") Long studentId,@PathVariable("schoolId") Long schoolId) throws IllegalAccessException{
+        studentService.addToSchool(studentId, schoolId);
+    }
 }
