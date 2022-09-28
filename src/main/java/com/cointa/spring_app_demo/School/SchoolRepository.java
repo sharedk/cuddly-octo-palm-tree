@@ -6,8 +6,6 @@ package com.cointa.spring_app_demo.School;
 
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.jpa.repository.cdi.JpaRepositoryExtension;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -19,5 +17,7 @@ public interface SchoolRepository extends JpaRepository<School,Long> {
     
 //    @Query("SELECT s FROM School s")
 //    List<SchoolView> findAllSchoolView();
+    
+    List<NameOnly> findByNameLike(String s);
     
 }

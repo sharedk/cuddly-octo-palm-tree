@@ -40,6 +40,11 @@ public class StudentController {
         return studentService.getNames();
     }
     
+    @GetMapping(path="namesAndSchoolOnly")
+    public List<NameAndSchoolOnly> getNamesAndSchoolOnly(){
+        return studentService.getNamesAndSchoolOnly();
+    }
+    
     @PostMapping
     public void addNewStudent(@RequestBody Student student) throws IllegalAccessException {
         studentService.addStudent(student);

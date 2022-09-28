@@ -5,6 +5,8 @@
 package com.cointa.spring_app_demo.Student;
 
 import com.cointa.spring_app_demo.School.NameOnly;
+import com.cointa.spring_app_demo.School.School;
+import org.springframework.beans.factory.annotation.Value;
 
 /**
  *
@@ -12,6 +14,10 @@ import com.cointa.spring_app_demo.School.NameOnly;
  */
 public interface NameAndSchoolOnly {
     String getName();
-    NameOnly getSchool();
+    SchoolSummary getSchool(); 
     
+    
+    interface SchoolSummary{
+        String getName();
+    }
 }

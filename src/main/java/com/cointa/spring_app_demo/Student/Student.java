@@ -31,7 +31,7 @@ public class Student {
     )
     private Long id;
     private String name;
-    @Column(columnDefinition = "varchar(255) default ''")
+    //@Column(columnDefinition = "varchar(255) default ''")
     private String surname;
     @Transient
     private Integer age;
@@ -53,29 +53,22 @@ public class Student {
     public Student() {
     }
 
-    public Student(Long id, String name,  LocalDate dob, String email,School school) {
+    public Student(Long id, String name,String surname,  LocalDate dob, String email,School school) {
         this.id = id;
         this.name = name;
+        this.surname = surname;
         this.dob = dob;
         this.email = email;
         this.school= school;
     }
 
-    public Student(String name, LocalDate dob, String email,School school) {
-        this.name = name;
-        this.dob = dob;
-        this.email = email;
-        this.school= school;
-    }
-
-    public Student(Long id, String name, String surname, Integer age, LocalDate dob, String email) {
+    public Student(String name,String surname, LocalDate dob, String email,School school) {
         this.name = name;
         this.surname = surname;
-        this.age = age;
         this.dob = dob;
         this.email = email;
+        this.school= school;
     }
-    
 
     public Long getId() {
         return id;
@@ -84,7 +77,7 @@ public class Student {
     public String getName() {
         return name;
     }
-
+    
     public Integer getAge() {
         return Period.between(this.dob,LocalDate.now()).getYears();
     }
@@ -126,11 +119,14 @@ public class Student {
         this.school = school;
     }
 
-    public Long getSchool_id() {
-        if(this.school!=null) return this.school.getId();
-        else return null;
+    public School
+         getSchool() {
+        return this.school;
+//        if(this.school!=null) return this.school.getId();
+//        else return null;
         
     }
+        
     
     
 }

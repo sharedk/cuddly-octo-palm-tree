@@ -39,8 +39,8 @@ public class School {
     private Long id;
     private String name;
     
-    @OneToMany(mappedBy = "school",fetch = FetchType.LAZY)
-    private List<Student> students;
+//    @OneToMany(mappedBy = "school",fetch = FetchType.LAZY)
+//    private List<Student> students;
 
     public School(Long id, String name) {
         this.id = id;
@@ -71,11 +71,11 @@ public class School {
         this.name = name;
     }
     
-    public List<Student> getStudents() {
-        return students;
-    }
-
-    public void setStudents(List<Student> students) {
-        this.students = students;
-    }
+//    public List<Student> getStudents() {
+//        return students;
+//    }
+//
+//    public void setStudents(List<Student> students) {
+//        this.students = students;
+//    }
 }

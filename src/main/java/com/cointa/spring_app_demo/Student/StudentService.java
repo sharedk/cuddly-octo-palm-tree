@@ -71,4 +71,7 @@ public class StudentService {
         return studentRepository.findNames();
     }
     
+    public List<NameAndSchoolOnly> getNamesAndSchoolOnly(){
+        return studentRepository.findByNameLike("%%");
+    }
 }
