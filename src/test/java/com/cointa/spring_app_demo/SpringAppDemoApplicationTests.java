@@ -3,10 +3,13 @@ package com.cointa.spring_app_demo;
 
 import com.cointa.spring_app_demo.School.NameOnly;
 import com.cointa.spring_app_demo.School.SchoolRepository;
+import com.cointa.spring_app_demo.Student.CustomSpec;
 import com.cointa.spring_app_demo.Student.NameAndSchoolOnly;
 import com.cointa.spring_app_demo.Student.NameAndSchoolOnly2;
 import com.cointa.spring_app_demo.Student.Student;
 import com.cointa.spring_app_demo.Student.StudentRepository;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.hibernate.Session;
@@ -40,5 +43,12 @@ class SpringAppDemoApplicationTests {
                 System.out.println(student.getName()+" "+student.getSchoolname());
             }  
         } 
+        @Test
+        void TestSpecifications(){
+            List<Student> students= studentRepository.findAll(CustomSpec.bornBefore(LocalDate.of(1994,Month.APRIL,1))
+                    .or(CustomSpec.emailContains("outlook")));
+            for(Student student:students){
+                System.out.println(student.getName()+" "+student.getSchool().getName());
+            }
         }
-
+}

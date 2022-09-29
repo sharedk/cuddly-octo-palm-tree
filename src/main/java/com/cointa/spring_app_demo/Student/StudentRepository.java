@@ -7,6 +7,7 @@ package com.cointa.spring_app_demo.Student;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Repository;
  * 
  */
 @Repository
-public interface StudentRepository extends JpaRepository<Student,Long>{
+public interface StudentRepository extends JpaRepository<Student,Long>, JpaSpecificationExecutor<Student>{
     
     @Query("SELECT s FROM Student s where s.email=?1")
     Optional<Student> findStudentByMail(String email);

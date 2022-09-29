@@ -30,8 +30,8 @@ public class SpringAppDemoApplicationConfig {
         return args -> {
             School school1= new School("LiceoFasano");
             schoolRepository.save(school1);
-            Student cosimo = new Student("cosimo","moretti",LocalDate.of(1995,Month.DECEMBER,27), "cosimo.moretti@outlook.it",school1);
-            Student mariam = new Student("mariam","jhamal",LocalDate.of(1995,Month.APRIL,8),"mariam@gmail.com",school1);
+            Student cosimo = new Student("cosimo","moretti",LocalDate.of(1993,Month.DECEMBER,27), "cosimo.moretti@gmail.it",school1);
+            Student mariam = new Student("mariam","jhamal",LocalDate.of(1995,Month.APRIL,8),"mariam@outlook.com",school1);
             List<Student> studentList =Arrays.asList(mariam,cosimo);
             studentRepository.saveAll(studentList);
             
