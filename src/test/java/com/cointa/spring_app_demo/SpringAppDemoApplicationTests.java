@@ -35,10 +35,10 @@ class SpringAppDemoApplicationTests {
         
         @Test
         void ByNameLikeLeftJoinWithNameAndSchoolOnly2InterfaceProjectionAndCustomQuery(){
-            List<NameAndSchoolOnly2> students=studentRepository.findByNameLikeCustomQuery("%%");
+            List<NameAndSchoolOnly2> students=studentRepository.findAllCustomQuery();
             for(NameAndSchoolOnly2 student: students){
-                System.out.println(student.getA()+" "+student.getB());
+                System.out.println(student.getName()+" "+student.getSchoolname());
             }  
+        } 
         }
-        
-}
+

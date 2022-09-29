@@ -24,9 +24,9 @@ public interface StudentRepository extends JpaRepository<Student,Long>{
     @Query("SELECT name FROM Student s")
     List<String> findNames();
     
-    @Query(value = "SELECT student.name as A,school.name as B FROM student LEFT JOIN school ON student.school_id=school.id WHERE student.name LIKE ?1", nativeQuery = true)
-    List<NameAndSchoolOnly2> findByNameLikeCustomQuery(String string);
+    @Query(value = "SELECT student.name as name,school.name as schoolname FROM student LEFT JOIN school ON student.school_id=school.id", nativeQuery = true)
+    List<NameAndSchoolOnly2> findAllCustomQuery();
     
     List<NameAndSchoolOnly> findByNameLike(String string);
-     
+         
 }
